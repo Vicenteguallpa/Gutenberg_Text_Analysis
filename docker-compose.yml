@@ -1,0 +1,8 @@
+version: "3.3"
+
+services:
+  voyant_gen:
+    build:
+      context: ./compose/voyant_generator
+    volumes:
+      - ${VOYANT_GEN_LOCAL_VOL}:${VOYANT_GEN_CONTAINER_VOL}
