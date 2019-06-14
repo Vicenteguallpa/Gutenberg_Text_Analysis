@@ -10,7 +10,7 @@ def make_list(keyword_path):
         return [line.strip() for line in f]
 
 
-def voyant(keywords, key_path, text_path, corpora_path):
+def voyant(keywords, key_path, text_path, corpora_path, csv_path):
     if (not key_path.endswith('/') or not text_path.endswith('/') or not corpora_path.endswith('/')):
         raise Exception("File path must end with a /")
 
@@ -44,7 +44,7 @@ def voyant(keywords, key_path, text_path, corpora_path):
 
     # Making csv of all the voyant urls
     fields = ('keyword', 'url')
-    with open('voyant.csv', 'w', newline='') as csvfile:
+    with open(csv_path + 'voyant.csv', 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fields)
         writer.writeheader()
 
@@ -64,7 +64,8 @@ def main():
     key_path = str(sys.argv[2]).strip()
     text_path = str(sys.argv[3]).strip()
     corpora_path = str(sys.argv[4]).strip()
-    voyant(keyword, key_path, text_path, corpora_path)
+    csv_path = str(sys.argv[5]).strip()
+    voyant(keyword, key_path, text_path, corpora_path, csv_path)
     print("Wow, it actually worked!")
 
 
